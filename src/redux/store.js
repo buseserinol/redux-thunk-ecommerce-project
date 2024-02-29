@@ -5,7 +5,7 @@ import productReducer from "./reducer/productReducer";
 
 const rootReducer = combineReducers({
   basket: basketReducer,
-  product: productReducer,
+  products: productReducer,
 });
 
 //store'u oluştur ve export
