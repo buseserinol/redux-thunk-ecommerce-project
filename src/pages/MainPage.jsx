@@ -13,7 +13,6 @@ const MainPage = () => {
 
   const store = useSelector((store) => store.products);
   const dispatch = useDispatch();
-  console.log(store);
 
   useEffect(() => {
     dispatch(setLoading());

@@ -1,6 +1,7 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import basketReducer from "./reducer/basketReducer";
 import productReducer from "./reducer/productReducer";
+import { thunk } from "redux-thunk";
 //reducerlerı birleştir.
 
 const rootReducer = combineReducers({
@@ -9,4 +10,4 @@ const rootReducer = combineReducers({
 });
 
 //store'u oluştur ve export
-export default createStore(rootReducer);
+export default createStore(rootReducer, applyMiddleware(thunk));

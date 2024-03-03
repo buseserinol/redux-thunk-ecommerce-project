@@ -5,8 +5,11 @@ const initialState = {
 };
 const basketReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "X":
-      return state;
+    case "ADD":
+      return {
+        ...state,
+        basket: state.basket.concat(action.payload),
+      };
     case "Y":
       return state;
     default:
