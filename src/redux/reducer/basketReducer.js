@@ -10,6 +10,7 @@ const basketReducer = (state = initialState, action) => {
         ...state,
         basket: state.basket.concat(action.payload),
       };
+
     case "SET_BASKET_LOADING":
       return { ...state, isLoading: true };
 
@@ -24,6 +25,21 @@ const basketReducer = (state = initialState, action) => {
         basket: action.payload,
       };
 
+    case "UPDATE":
+      //güncellenecek diznin kopyasını oluştur.
+      const cloneBasket = [...state.basket];
+      //güncellenecek elemanın dizideki sırasını bul
+      const foundId = cloneBasket.findIndex(
+        (item) => item.id === action.payload
+      );
+      //elemanın mik. 1 arttır.
+      cloneBasket[foundId].amount++;
+
+      return { ...state, basket: cloneBasket };
+
+    case "DELETE":
+      const filtred = state.basket.filter((item) => item.id !== action.payload);
+      return { ...state, basket: filtred };
     default:
       return state;
   }

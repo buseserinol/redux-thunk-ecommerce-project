@@ -27,7 +27,7 @@ export const getData = () => {
 
     // api istekleri atıp sonrasında store'a haber verebilriz
     axios
-      .get("http://localhost:3010/products")
+      .get("http://localhost:3020/products")
       .then((res) => dispatch(setProducts(res.data)))
       .catch((err) => dispatch(setError(err.message)));
   };

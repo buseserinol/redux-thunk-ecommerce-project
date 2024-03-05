@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import { getData } from "../redux/actions/productActions";
 import Card from "./Card";
+import { getBasket } from "../redux/actions/basketActions";
 
 const HomePage = () => {
   //store'a abone ol
@@ -12,6 +13,8 @@ const HomePage = () => {
   useEffect(() => {
     //tek bir aksiyon çalıştırdık ve arka planda api isteği atıyor.
     dispatch(getData());
+
+    dispatch(getBasket());
   }, []);
 
   return (

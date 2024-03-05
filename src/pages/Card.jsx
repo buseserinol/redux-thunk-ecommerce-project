@@ -1,9 +1,19 @@
-import { useDispatch } from "react-redux";
-import { addToBasket } from "../redux/actions/basketActions";
-addToBasket;
+import { useDispatch, useSelector } from "react-redux";
+import { addToBasket, updateItem } from "../redux/actions/basketActions";
 
 const Card = ({ product }) => {
+  const store = useSelector((store) => store.basket);
   const dispatch = useDispatch();
+
+  const found = store.basket.find((i) => i.id === product.id);
+
+  const handleClick = () => {
+    if (found) {
+      dispatch(updateItem(found));
+    } else {
+      dispatch(addToBasket(product));
+    }
+  };
   return (
     <div className=" card py-4 px-3 bg-transparent text-white ">
       <div className="d-flex justify-content-center ">
@@ -28,10 +38,10 @@ const Card = ({ product }) => {
           ))}
         </p>
         <button
-          onClick={() => dispatch(addToBasket(product))}
+          onClick={handleClick}
           className="w-100 bt bg-secondary text-white p-2 rounded"
         >
-          Sepete Ekle
+          {found ? `Miktarı Arttır (${found.amount})` : "Sepete Ekle"}
         </button>
       </div>
     </div>

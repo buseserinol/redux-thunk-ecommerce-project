@@ -18,7 +18,7 @@ const MainPage = () => {
     dispatch(setLoading());
     //isteğin başladığını store'a bildir.
     axios
-      .get("http://localhost:3010/products")
+      .get("http://localhost:3020/products")
       //isteğin başarılı old. store'a bildir
       .then((res) => dispatch(setProducts(res.data)))
       //isteğin başarısız old. store'a bildir
