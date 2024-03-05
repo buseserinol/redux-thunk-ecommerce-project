@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addToBasket, updateItem } from "../redux/actions/basketActions";
+import { toast } from "react-toastify";
 
 const Card = ({ product }) => {
   const store = useSelector((store) => store.basket);
@@ -10,8 +11,10 @@ const Card = ({ product }) => {
   const handleClick = () => {
     if (found) {
       dispatch(updateItem(found));
+      toast.warn("Ürün miktarı arttırıldı");
     } else {
       dispatch(addToBasket(product));
+      toast.success("Ürün sepete eklendi");
     }
   };
   return (

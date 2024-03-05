@@ -1,8 +1,19 @@
 import { useDispatch } from "react-redux";
 import { removeItem, updateItem } from "../redux/actions/basketActions";
+import { toast } from "react-toastify";
 
 const BasketItem = ({ product }) => {
   const dispatch = useDispatch();
+
+  const handleIncrease = () => {
+    dispatch(updateItem(product));
+    toast.success("Ürün miktarı arttırıldı.");
+  };
+
+  const handleDecrease = () => {
+    dispatch(removeItem(product.id));
+    toast.error("Ürün sepetten siindi.");
+  };
   return (
     <div className=" justify-content-between rounded-2 p-4 d-flex text-black bg-white mb-5 ">
       <div className="d-flex align-items-center gap-3">
@@ -16,16 +27,10 @@ const BasketItem = ({ product }) => {
 
       <div className="d-flex gap-3 align-items-center">
         <h6>Miktar: {product.amount}</h6>
-        <button
-          onClick={() => dispatch(updateItem(product))}
-          className="btn btn-sm btn-success"
-        >
+        <button onClick={handleIncrease} className="btn btn-sm btn-success">
           +
         </button>
-        <button
-          onClick={() => dispatch(removeItem(product.id))}
-          className="btn btn-sm btn-danger"
-        >
+        <button onClick={handleDecrease} className="btn btn-sm btn-danger">
           -
         </button>
       </div>

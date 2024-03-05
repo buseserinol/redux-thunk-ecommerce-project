@@ -3,6 +3,7 @@
 //önce api post iteği ile elemanı eklicek
 
 import axios from "axios";
+import { toast } from "react-toastify";
 
 //api'a eklenirse store'a da eklicek
 

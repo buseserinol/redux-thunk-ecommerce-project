@@ -2,8 +2,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBasket } from "../redux/actions/basketActions";
 import BasketItem from "../components/BasketItem";
+import { toast } from "react-toastify";
 
 const BasketPage = () => {
+  const handleCompleted = () => {
+    toast.success("Alışveriş tamamlandı.");
+  };
   const dispatch = useDispatch();
   const store = useSelector((store) => store.basket);
   //api'dan sepete eklenen ürünleri al ve store'a aktar
@@ -31,7 +35,10 @@ const BasketPage = () => {
         <div className="col-md-4">
           <div className="bg-white p-5 rounded w-100 text-black">
             <h5 className="text-center">TOPLAM TUTAR: {formatTotal} ₺</h5>
-            <button className="bt w-100 bg-dark text-white p-2 rounded mt-2">
+            <button
+              onClick={handleCompleted}
+              className="bt w-100 bg-dark text-white p-2 rounded mt-2"
+            >
               Alışverişi Tamamla
             </button>
           </div>
