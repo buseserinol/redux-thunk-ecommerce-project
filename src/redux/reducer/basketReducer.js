@@ -40,6 +40,16 @@ const basketReducer = (state = initialState, action) => {
     case "DELETE":
       const filtred = state.basket.filter((item) => item.id !== action.payload);
       return { ...state, basket: filtred };
+
+    case "DECREASE":
+      const decreasedBasket = state.basket.map((item) => {
+        if (item.id === action.payload && item.amount > 1) {
+          return { ...item, amount: item.amount - 1 };
+        }
+        return item;
+      });
+      return { ...state, basket: decreasedBasket };
+
     default:
       return state;
   }

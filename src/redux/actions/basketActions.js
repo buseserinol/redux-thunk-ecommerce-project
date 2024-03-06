@@ -3,7 +3,6 @@
 //önce api post iteği ile elemanı eklicek
 
 import axios from "axios";
-import { toast } from "react-toastify";
 
 //api'a eklenirse store'a da eklicek
 
@@ -77,4 +76,13 @@ export const removeItem = (delete_id) => (dispatch) => {
         payload: delete_id,
       })
     );
+};
+
+export const decreaseItem = (decrease_id) => (dispatch) => {
+  axios.patch(`http://localhost:3020/basket/${decrease_id}`).then(() =>
+    dispatch({
+      type: "DECREASE",
+      payload: decrease_id,
+    })
+  );
 };

@@ -1,5 +1,9 @@
 import { useDispatch } from "react-redux";
-import { removeItem, updateItem } from "../redux/actions/basketActions";
+import {
+  removeItem,
+  updateItem,
+  decreaseItem,
+} from "../redux/actions/basketActions";
 import { toast } from "react-toastify";
 
 const BasketItem = ({ product }) => {
@@ -11,8 +15,13 @@ const BasketItem = ({ product }) => {
   };
 
   const handleDecrease = () => {
-    dispatch(removeItem(product.id));
-    toast.error("Ürün sepetten siindi.");
+    if (product.amount === 1) {
+      dispatch(removeItem(product.id));
+      toast.error("Ürün sepetten silindi.");
+    } else {
+      dispatch(decreaseItem(product.id));
+      toast.error("Ürün miktarı azaltıldı.");
+    }
   };
   return (
     <div className=" justify-content-between rounded-2 p-4 d-flex text-black bg-white mb-5 ">
