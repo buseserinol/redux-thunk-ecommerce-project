@@ -78,11 +78,15 @@ export const removeItem = (delete_id) => (dispatch) => {
     );
 };
 
-export const decreaseItem = (decrease_id) => (dispatch) => {
-  axios.patch(`http://localhost:3020/basket/${decrease_id}`).then(() =>
-    dispatch({
-      type: "DECREASE",
-      payload: decrease_id,
+export const decreaseItem = (product) => (dispatch) => {
+  axios
+    .patch(`http://localhost:3020/basket/${product.id}`, {
+      amount: product.amount - 1,
     })
-  );
+    .then(() =>
+      dispatch({
+        type: "DECREASE",
+        payload: product.id,
+      })
+    );
 };

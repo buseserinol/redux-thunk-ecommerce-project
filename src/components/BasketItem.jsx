@@ -19,7 +19,7 @@ const BasketItem = ({ product }) => {
       dispatch(removeItem(product.id));
       toast.error("Ürün sepetten silindi.");
     } else {
-      dispatch(decreaseItem(product.id));
+      dispatch(decreaseItem(product));
       toast.error("Ürün miktarı azaltıldı.");
     }
   };

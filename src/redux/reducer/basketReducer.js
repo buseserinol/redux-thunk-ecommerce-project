@@ -42,14 +42,12 @@ const basketReducer = (state = initialState, action) => {
       return { ...state, basket: filtred };
 
     case "DECREASE":
-      const decreasedBasket = state.basket.map((item) => {
-        if (item.id === action.payload && item.amount > 1) {
-          return { ...item, amount: item.amount - 1 };
-        }
-        return item;
-      });
-      return { ...state, basket: decreasedBasket };
-
+      const cloneDecBasket = [...state.basket];
+      const findId = cloneDecBasket.findIndex(
+        (item) => item.id === action.payload
+      );
+      cloneDecBasket[findId].amount--;
+      return { ...state, basket: cloneDecBasket };
     default:
       return state;
   }
